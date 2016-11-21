@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #/////////////////////////////////////////////////////////////////////////////
 # Fireball Projects
 #/////////////////////////////////////////////////////////////////////////////
@@ -60,6 +61,8 @@ quick_gen_project_*_autogen.sh.meta
 
 .idea/
 
+=======
+>>>>>>> ea2083ecad850c533d847d9fd06ba7c8842419e1
 # Logs
 logs
 *.log
@@ -97,4 +100,7 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea2083ecad850c533d847d9fd06ba7c8842419e1
