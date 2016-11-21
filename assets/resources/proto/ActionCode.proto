@@ -1,0 +1,23 @@
+package grace.proto.msg;
+syntax = "proto3";
+
+enum ActionCode {
+    EnterRoot = 1;      //进入房间
+    SendMessage = 2;    //发送消息
+}
+
+enum PushCode {
+    PlayerEnter = 1;    //玩家进入
+    PlayerMessage = 2;  //玩家消息
+}
+
+message PushMessage {
+    
+}
+
+message PBMessage{
+	optional int32 actionCode = 1; //操作码id
+	optional int32 sequence = 2; //请求序列
+	optional bytes data = 3; //提交或响应的数据
+    optional repeated PushMessage pushMssage = 4; //推送消息
+}

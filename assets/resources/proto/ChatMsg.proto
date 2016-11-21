@@ -1,0 +1,15 @@
+package grace.proto.msg;
+syntax = "proto3";
+import "Player.proto";
+
+enum ChatMsgType {
+    ALL = 1,    //全体消息
+    P2P = 2     //点对点消息
+}
+
+message ChatMsg {
+    optional Player playerInfo = 1; //玩家信息
+    ChatMsgType type = 2;           //消息类型
+    string message = 3;             //消息字符
+    uint64 timestamp = 4;           //时间戳
+}

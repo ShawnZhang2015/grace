@@ -1,0 +1,8 @@
+package grace.proto.msg;
+syntax = "proto3";
+
+message Player {
+    uint32  id = 1;         //唯一ID  首次登录时设置为0，由服务器分配
+    string  name = 2;       //显示名字
+    uint64  enterTime = 3;  //登录时间
+}
