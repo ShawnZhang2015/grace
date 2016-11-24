@@ -1,0 +1,19 @@
+@startuml
+class cc.Node {
+    - components[]
+}
+class cc.Component {
+    + node
+}
+
+cc.Node "1" o-- "n" cc.Component
+
+cc.Component <|-- cc.Sprite
+cc.Component <|-- cc.Button
+cc.Component <|-- cc.Label
+
+cc.Sprite *-- cc.Node 
+cc.Button *-- cc.Node 
+cc.Label *-- cc.Node
+
+@enduml

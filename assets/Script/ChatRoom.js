@@ -23,9 +23,11 @@ cc.Class({
         if (!sender.string) {
             return;
         }
+        
+
         this.playerName = sender.string;
 
-        var chatMsg = new PB.ChatMsg();
+        const chatMsg = new PB.ChatMsg();
         chatMsg.playerInfo = new PB.Player();
         chatMsg.playerInfo.name = sender.string;
         chatMsg.message = sender.string + '进入聊天室';
