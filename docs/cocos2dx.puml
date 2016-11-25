@@ -1,0 +1,21 @@
+@startuml
+class cc.CCObject
+
+abstract class ccui.Widget {
+    - virtual void initRenderer()
+    + virtual Node* getVirtualRenderer()
+}
+
+
+cc.Node <|-- cc.Label
+cc.Node <|-- cc.Scale9Sprite
+ccui.Button *-- cc.Scale9Sprite
+cc.CCObject <|-- cc.Node
+cc.Node <|-- cc.Sprite
+ccui.ImageView *-- cc.Scale9Sprite
+cc.Node <|-- ccui.ProtectedNode
+ccui.ProtectedNode <|-- ccui.Widget
+ccui.Widget <|-- ccui.ImageView
+ccui.Widget <|-- ccui.Button
+ccui.Widget <|-- ccui.Layout
+@enduml

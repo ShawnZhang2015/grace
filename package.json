@@ -11,5 +11,16 @@
   "dependencies": {
     "protobufjs": "^5.0.1",
     "socket.io": "^1.5.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-command": "^0.1.2",
+    "gulp-files-sync": "^0.3.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-shell": "^0.5.2",
+    "gulp-spawn": "^0.3.0",
+    "imagemin": "^5.2.2",
+    "imagemin-pngquant": "^5.0.0",
+    "through2": "^2.0.1"
   }
 }
