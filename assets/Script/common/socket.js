@@ -1,7 +1,7 @@
 
 
 var SocketIO = SocketIO || null;
-var io = SocketIO || require('socket.io-client');
+var io = SocketIO ||require('socket.io-client');
 
 function Socket(host) {
     this.sequence = 0;
