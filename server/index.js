@@ -8,7 +8,7 @@ var clients = [];
 io.on('connection', function(client){
     clients.push(client);
     client.on('message',function(data){
-        clients.forEach(function(c) {
+        clients.forEach(function(c, index) {
             c.emit('message', data);
         });    
     });

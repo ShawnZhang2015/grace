@@ -7,6 +7,8 @@ cc.Class({
       
         nameBox: cc.Node,   //名字输入框
         inputBox: cc.Node,  //消息输入框
+        content: cc.Node,   //列表区
+        chatBarPrefab: cc.Prefab,
     },
 
     // use this for initialization
@@ -51,8 +53,12 @@ cc.Class({
         chatMsg.message = editBox.string;
 
         socket.send(PB.ActionCode.SendMessage, chatMsg, (protoData) => {
-            var chatMsg = PB.ChatMsg.decode(protoData);
-            cc.log(JSON.stringify(chatMsg));
+            let chatMsg = PB.ChatMsg.decode(protoData);
+            let chatBar = cc.instantiate(this.chatBarPrefab);
+            this.content.addChild(chatBar);
+            chatBar.getComponent('ChatBar').message = chatMsg.message;
+            // cc.log(JSON.stringify(chatMsg));
+
         });
     }
 
