@@ -1,8 +1,3 @@
 # 探索CocosCreator正确编程姿势
 本例是用CocosCreator实现一个简单的聊天室，主要是演示在CocosCreator工程中如何优雅的管理三方库、使用ProtoBuff
 、模块化编程。
-
-## 现代化JavaScript工程的编译与构建
-通过对CocosCreator安装包分析发现，CocosCreator是基于Electron框架创建的桌面应用。
->Electron提供了丰富的本地(操作系统)的API,使你能够使用纯JavaScript来创建桌面应用程序。
-主要使用HTML\CSS\Javascript所编写。在安装包中还发现glup.js
