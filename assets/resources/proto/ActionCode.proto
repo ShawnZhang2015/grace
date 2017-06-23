@@ -4,6 +4,7 @@ package grace.proto.msg;
 enum ActionCode {
     EnterRoot = 1;      //进入房间
     SendMessage = 2;    //发送消息
+    RecvMessage = 3;    //收到消息
 }
 
 enum PushCode {

@@ -8,8 +8,20 @@ var clients = [];
 io.on('connection', function(client){
     clients.push(client);
     client.on('message',function(data){
+
+        let pbMessage = PB.PBMessage.decode(data);
+        
+        if (pbMessage.actionCode === PB.ActionCode.SendMessage) {
+            pbMessage.actionCode = PB.ActionCode.RecvMessage;    
+        }
+        
+        let sendData = pbMessage.toArrayBuffer();
         clients.forEach(function(c, index) {
-            c.emit('message', data);
+            if (c === client) {
+                c.emit('message', data);
+            } else {
+                c.emit('message', sendData);
+            }
         });    
     });
 });

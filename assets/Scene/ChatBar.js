@@ -20,8 +20,7 @@ cc.Class({
                     if (height < 60) {
                         height = 60;
                     }
-                    this.node.height = height * 1.2;   
-                      
+                    this.node.height = height * 1.2;
                 })
             }
         },

@@ -12,11 +12,35 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad: function () {
+    onLoad() {
         //隐藏文字输入框
         this.inputBox.active = false;
+        socket.on(PB.ActionCode.EnterRoot, (protoData) => {
+            let chatMsg = PB.ChatMsg.decode(protoData);
+            this._onPlayEnter(chatMsg);    
+        });
+
+        socket.on(PB.ActionCode.RecvMessage, (protoData) => {
+            let chatMsg = PB.ChatMsg.decode(protoData);
+            this._onRecvMessage(chatMsg);   
+        });
     },
 
+    _onPlayEnter(chatMsg) {
+        let node = new cc.Node();
+        node.color = cc.Color.RED;
+        let label = node.addComponent(cc.Label);
+        label.string = chatMsg.message;
+        this.content.addChild(node);
+    },
+
+    _onRecvMessage(chatMsg) {
+        let chatBar = cc.instantiate(this.chatBarPrefab);
+        this.content.addChild(chatBar);
+        chatBar = chatBar.getComponent('ChatBar');
+        chatBar.message = chatMsg.message;
+        chatBar.nameLabel.string = chatMsg.playerInfo.name;
+    },
     /**
      * 输入名字时响应
      */
@@ -42,7 +66,7 @@ cc.Class({
         });
     },
 
-    send: function() {
+    send(target) {
         var editBox = this.inputBox.getChildByName('editBox').getComponent(cc.EditBox); 
         if (!editBox.string) {
             return;
@@ -51,14 +75,15 @@ cc.Class({
         chatMsg.playerInfo = new PB.Player();
         chatMsg.playerInfo.name = this.playerName;
         chatMsg.message = editBox.string;
-
         socket.send(PB.ActionCode.SendMessage, chatMsg, (protoData) => {
+            cc.log('发送成功');
             let chatMsg = PB.ChatMsg.decode(protoData);
             let chatBar = cc.instantiate(this.chatBarPrefab);
             this.content.addChild(chatBar);
-            chatBar.getComponent('ChatBar').message = chatMsg.message;
-            // cc.log(JSON.stringify(chatMsg));
-
+            chatBar = chatBar.getComponent('ChatBar');
+            chatBar.message = chatMsg.message;
+            chatBar.nameLabel.string = chatMsg.playerInfo.name;
+            chatBar.direction = 1;
         });
     }
 

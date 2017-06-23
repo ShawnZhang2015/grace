@@ -538,7 +538,7 @@
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
-    "_N$spacingY": 0,
+    "_N$spacingY": 4,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0
   },
@@ -1305,7 +1305,7 @@
     "_N$backgroundImage": {
       "__uuid__": "67e68bc9-dad5-4ad9-a2d8-7e03d458e32f"
     },
-    "_N$returnType": 0,
+    "_N$returnType": 1,
     "_N$inputFlag": 5,
     "_N$inputMode": 6,
     "_N$fontSize": 29,
