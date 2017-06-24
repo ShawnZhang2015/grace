@@ -3,14 +3,16 @@
 、模块化编程。
 
 # 运行环境
-进入项目目录安装 npm 依赖
+
+1.进入项目目录安装 npm 依赖
 >npm install
 
-2. 启动服务器
+2.启动服务器
 >cd server \
 node index.js
 
-3. 运行客户端
+3.运行客户端
+
 使用cocoscreator打开项目即可运行.
 
 
