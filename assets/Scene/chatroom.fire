@@ -838,7 +838,7 @@
       "__id__": 2
     },
     "component": "ChatRoom",
-    "handler": "",
+    "handler": "send",
     "customEventData": ""
   },
   {

@@ -1,4 +1,4 @@
-require('./common/useglobal');
+let Socket = require('socket')
 
 cc.Class({
     extends: cc.Component,
@@ -12,9 +12,12 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad() {
-        //隐藏文字输入框
-        this.inputBox.active = false;
+    init() {
+        let PBHelper = require('pbhelper');
+        let pbHelper = new PBHelper();
+        let PB = pbHelper.loadFile('resources/proto', 'grace.proto.msg');
+        let socket = Socket('ws://localhost:3000');
+
         socket.on(PB.ActionCode.EnterRoot, (protoData) => {
             let chatMsg = PB.ChatMsg.decode(protoData);
             this._onPlayEnter(chatMsg);    
@@ -24,6 +27,16 @@ cc.Class({
             let chatMsg = PB.ChatMsg.decode(protoData);
             this._onRecvMessage(chatMsg);   
         });
+
+        global.PB = PB;
+        global.pbHelper = pbHelper;
+        global.socket = socket;
+    },
+
+    onLoad() {
+        //隐藏文字输入框
+        this.inputBox.active = false;
+        this.init();
     },
 
     _onPlayEnter(chatMsg) {
@@ -49,10 +62,8 @@ cc.Class({
         if (!sender.string) {
             return;
         }
-        
-
+    
         this.playerName = sender.string;
-
         const chatMsg = new PB.ChatMsg();
         chatMsg.playerInfo = new PB.Player();
         chatMsg.playerInfo.name = sender.string;

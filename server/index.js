@@ -2,10 +2,11 @@ var PBHelper = require('../assets/Script/common/pbhelper');
 var pbHelper = new PBHelper();
 var PB = pbHelper.loadFile('../assets/resources/proto', 'grace.proto.msg');
 
-var io = require('socket.io')();
-var clients = [];
+const WebSocket = require('ws');
+const ws = new WebSocket.Server({ port: 3000 }); 
+let clients = [];
 
-io.on('connection', function(client){
+ws.on('connection', function(client){
     clients.push(client);
     client.on('message',function(data){
 
@@ -18,12 +19,18 @@ io.on('connection', function(client){
         let sendData = pbMessage.toArrayBuffer();
         clients.forEach(function(c, index) {
             if (c === client) {
-                c.emit('message', data);
+                c.send(data);
             } else {
-                c.emit('message', sendData);
+                c.send(sendData);
             }
         });    
     });
-});
 
-io.listen(3000);
+    client.on('close', () => {
+        let index = clients.indexOf(client);
+        if (index !== -1) {
+            clients.splice(index, 1);
+            console.log('有人断开');
+        }
+    });
+});

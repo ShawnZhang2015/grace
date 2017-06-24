@@ -9,8 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.4.1",
     "protobufjs": "^5.0.1",
-    "socket.io": "^1.5.1"
+    "socket.io": "^1.5.1",
+    "ws": "^3.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
