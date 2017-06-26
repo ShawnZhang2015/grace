@@ -1,9 +1,6 @@
 
-var ProtoBuf = require("protobufjs");
-var async = require('async');
-
-ProtoBuf.ByteBuffer.DEFAULT_NOASSERT = true;
-var builder = ProtoBuf.newBuilder();
+var protobuf = require("protobufjs");
+var builder = protobuf.newBuilder();
 
 var protoFiles = [
     'ActionCode.proto',
@@ -15,20 +12,20 @@ function PBHelper() {
     this.sequence = 0;
 }
 
+let window = global || window;
+
 PBHelper.prototype = {
     loadFile: function(path, packageName) {
         if (window.cc) {
-            cc.log('-----------this is cocos')
             path = cc.sys.isNative ? cc.url.raw(path) : `res/raw-assets/${path}`;
-            ProtoBuf.Util.IS_NODE = cc.sys.isNative;
+            protobuf.Util.IS_NODE = cc.sys.isNative;
             cc.log('>>>>>>>>' + path);
         }
     
         builder.importRoot = path;
         protoFiles.forEach(function (fileName) {
             let filePath = `${path}/${fileName}`;
-            cc.log(filePath);
-            ProtoBuf.protoFromFile(filePath, builder);
+            protobuf.protoFromFile(filePath, builder);
         });
         
         return builder.build(packageName);

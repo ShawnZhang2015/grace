@@ -1,5 +1,5 @@
-package grace.proto.msg;
 syntax = "proto3";
+package grace.proto.msg;
 
 message Player {
     uint32  id = 1;         //唯一ID  首次登录时设置为0，由服务器分配
