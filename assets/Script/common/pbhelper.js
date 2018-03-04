@@ -12,11 +12,11 @@ function PBHelper() {
     this.sequence = 0;
 }
 
-let window = global || window;
+//let window = global || window;
 
 PBHelper.prototype = {
     loadFile: function(path, packageName) {
-        if (window.cc) {
+        if (typeof cc !== 'undefined') {
             path = cc.sys.isNative ? cc.url.raw(path) : `res/raw-assets/${path}`;
             protobuf.Util.IS_NODE = cc.sys.isNative;
             cc.log('>>>>>>>>' + path);

@@ -1,5 +1,8 @@
 let Socket = require('socket')
 
+//在1.6之后没有了global变量，在此模拟一个
+window.global = window;
+
 cc.Class({
     extends: cc.Component,
 
