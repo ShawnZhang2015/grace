@@ -30,7 +30,7 @@ ws.on('connection', function(client){
         let index = clients.indexOf(client);
         if (index !== -1) {
             clients.splice(index, 1);
-            console.log('有人断开');
+            console.log('clinet closed');
         }
     });
 });
